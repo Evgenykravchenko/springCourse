@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+  <meta charset="UTF-8">
+  <title>My book shelf</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+<div class="bg-white border border-gray-300 rounded-lg p-4 shadow-sm w-full max-w-screen-lg">
+  <form class="flex flex-wrap md:flex-nowrap justify-between gap-x-2" method="post" th:action="@{/books/save}" th:object="${book}">
+    <div class="w-full md:w-1/4 mb-2 md:mb-0 ">
+      <input type="text" placeholder="Author" class="w-full p-2 border border-gray-300 rounded" th:field="*{author}">
+    </div>
+    <div class="w-full md:w-1/4 mb-2 md:mb-0">
+      <input type="text" placeholder="Book Title" class="w-full p-2 border border-gray-300 rounded" th:field="*{title}">
+    </div>
+    <div class="w-full md:w-1/4 mb-2 md:mb-0">
+      <input type="text" placeholder="Size (pages)" class="w-full p-2 border border-gray-300 rounded" th:field="*{size}">
+    </div>
+    <div class="w-full md:w-1/4 mb-2 md:mb-0">
+      <input type="submit" value="Save" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+    </div>
+  </form>
+
+  <form class="flex flex-wrap md:flex-nowrap justify-between mt-2 gap-x-2" method="post" th:action="@{/books/removeByRegex}">
+    <div class="w-full md:w-3/4 mb-2 md:mb-0">
+      <input type="text" placeholder="Regex" th:name="queryRegex" class="w-full p-2 border border-gray-300 rounded">
+    </div>
+    <div class="w-full md:w-1/4 mb-2 md:mb-0">
+      <input type="submit" value="Remove by Regex" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+    </div>
+  </form>
+
+  <div th:if="${message}" class="error_message text-zinc-950 font-bold mt-2" th:text="${message}"></div>
+
+  <div th:if="${error}" class="error_message text-red-600 font-bold mt-2" th:text="${error}"></div>
+
+  <div class="mt-4">
+    <div class="bg-gray-300 flex justify-between items-center p-2">
+      <div class="w-1/6">ID</div>
+      <div class="w-1/6">Author</div>
+      <div class="w-1/6">Title</div>
+      <div class="w-1/6">Size</div>
+      <div class="w-1/6">Action</div>
+    </div>
+    <div class="flex justify-between items-center" th:each="book : ${bookList}">
+      <div class="w-1/6 p-2" th:text="${book.id}"></div>
+      <div class="w-1/6 p-2" th:text="${book.author}"></div>
+      <div class="w-1/6 p-2" th:text="${book.title}"></div>
+      <div class="w-1/6 p-2" th:text="${book.size}"></div>
+      <form class="w-1/6 p-2" method="post" th:action="@{/books/remove}">
+        <input type="hidden" th:value="${book.id}" name="bookIdToRemove"/>
+        <input type="submit" value="Remove" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
