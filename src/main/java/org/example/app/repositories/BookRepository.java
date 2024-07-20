@@ -1,8 +1,8 @@
-package org.example.web.repositories;
+package org.example.app.repositories;
 
 import org.apache.log4j.Logger;
 import org.example.web.dto.Book;
-import org.example.web.validators.BookValidator;
+import org.example.app.validators.BookValidator;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

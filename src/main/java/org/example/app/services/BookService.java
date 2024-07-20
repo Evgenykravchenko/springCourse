@@ -1,10 +1,9 @@
-package org.example.web.services;
+package org.example.app.services;
 
-import org.apache.log4j.Logger;
 import org.example.web.dto.Book;
 
-import org.example.web.repositories.ProjectRepository;
-import org.example.web.validators.BookValidator;
+import org.example.app.repositories.ProjectRepository;
+import org.example.app.validators.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

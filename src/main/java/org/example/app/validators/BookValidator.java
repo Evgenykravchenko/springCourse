@@ -1,4 +1,4 @@
-package org.example.web.validators;
+package org.example.app.validators;
 
 import org.example.web.dto.Book;
 

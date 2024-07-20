@@ -2,8 +2,8 @@ package org.example.web.controllers;
 
 import org.apache.log4j.Logger;
 import org.example.web.dto.Book;
-import org.example.web.services.BookService;
-import org.example.web.validators.BookValidator;
+import org.example.app.services.BookService;
+import org.example.app.validators.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
