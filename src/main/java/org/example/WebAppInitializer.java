@@ -6,7 +6,6 @@ import org.example.web.configurations.WebContextConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
@@ -20,8 +19,6 @@ public class WebAppInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         logger.info("Loading app configuration");
-//        XmlWebApplicationContext applicationContext = new XmlWebApplicationContext();
-//        applicationContext.setConfigLocation("classpath:app-config.xml");
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
         applicationContext.register(AppContextConfig.class);
         servletContext.addListener(new ContextLoaderListener(applicationContext));
